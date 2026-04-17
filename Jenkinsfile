@@ -46,8 +46,8 @@ stages {
         rm -Rf .kube
         mkdir .kube
         
-        helm upgrade --install cast helm/cast-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
-        helm upgrade --install movie helm/movie-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install cast-service-dev helm/cast-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install movie-service-dev helm/movie-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
         '''
       }
     }
