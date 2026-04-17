@@ -1,0 +1,18 @@
+image:
+  repository: 7tom3/movie-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8000
+
+env:
+  databaseUri: "postgresql://movie_db_username:movie_db_password@movie-db/movie_db_dev"
+  castServiceUrl: "http://cast-service:8000/api/v1/casts/"
+
+postgres:
+  image: postgres:12.1-alpine
+  username: movie_db_username
+  password: movie_db_password
+  database: movie_db_dev
+  storage: 1Gi

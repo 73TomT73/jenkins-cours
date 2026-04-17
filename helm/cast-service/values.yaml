@@ -1,0 +1,18 @@
+image:
+  repository: 7tom3/cast-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8000
+
+env:
+  databaseUri: "postgresql://cast_db_username:cast_db_password@cast-db/cast_db_dev"
+  castServiceUrl: "http://cast-service:8000/api/v1/casts/"
+
+postgres:
+  image: postgres:12.1-alpine
+  username: cast_db_username
+  password: cast_db_password
+  database: cast_db_dev
+  storage: 1Gi
