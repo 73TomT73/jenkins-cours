@@ -19,7 +19,7 @@ spec:
           ports:
             - containerPort: {{ .Values.service.port }}
           env:
-            - name: DATABASE_URL
-              value: "{{ .Values.env.databaseUrl }}"
+            - name: DATABASE_URI
+              value: "{{ .Values.env.databaseUri }}"
             - name: CAST_SERVICE_HOST_URL
               value: "{{ .Values.env.castServiceUrl }}"
