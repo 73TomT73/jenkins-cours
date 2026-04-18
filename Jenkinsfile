@@ -95,7 +95,7 @@ stages {
     }
     steps {
       timeout(time: 15, unit: "MINUTES") {
-          input message: 'Souhaitez-vous déployer l'application en production ?', ok: 'Yes'
+          input message: 'Souhaitez-vous déployer en production ?', ok: 'Yes'
       }
       script {
         sh '''
