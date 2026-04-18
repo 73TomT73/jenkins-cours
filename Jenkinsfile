@@ -6,6 +6,7 @@ pipeline {
     DOCKER_TAG = "v.${BUILD_ID}.0"
   }
 agent any
+when { branch 'master' }
 stages {
   stage('Docker Build'){
     steps {
@@ -89,6 +90,9 @@ stages {
       KUBECONFIG = credentials("config")
     }
     steps {
+      timeout(time: 15, unit: "MINUTES") {
+          input message: 'Souhaitez-vous déployer l'application en production ?', ok: 'Yes'
+      }
       script {
         sh '''
         rm -Rf .kube
