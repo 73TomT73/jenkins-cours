@@ -2,7 +2,7 @@ image:
   tag: "dev"
 
 env:
-  databaseUri: "postgresql://cast_db_username:cast_db_password@cast-db.dev.svc.cluster.local:5432/cast_db_dev"
+  databaseUri: "postgresql://cast_db_username:cast_db_password@cast-db/cast_db_dev"
 
 postgres:
   database: cast_db_dev
