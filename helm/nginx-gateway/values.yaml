@@ -2,4 +2,13 @@ image:
   repository: nginx
   tag: latest
 
-port: 8080
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8080
+
+env: {}
+
+resources: {}
+
+replicaCount: 1
