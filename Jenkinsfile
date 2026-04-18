@@ -11,6 +11,9 @@ stages {
     when {
       branch 'master'
     }
+    steps {
+      echo "Condition de lancement de la pipeline sur branche master"
+    }
   }
   stage('Docker Build'){
     steps {
