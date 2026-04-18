@@ -19,7 +19,6 @@ stages {
     steps {
       script {
       sh '''
-        docker rm -f jenkins
         echo "BUILD $DOCKER_IMAGE_1"
         docker build -f $DOCKER_IMAGE_1/Dockerfile -t $DOCKER_ID/$DOCKER_IMAGE_1:$DOCKER_TAG $DOCKER_IMAGE_1/
       
@@ -53,7 +52,7 @@ stages {
         sh '''
         rm -Rf .kube
         mkdir .kube
-        
+        cat $KUBECONFIG > .kube/config
         helm upgrade --install cast-service-dev helm/cast-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
         helm upgrade --install movie-service-dev helm/movie-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
         '''
