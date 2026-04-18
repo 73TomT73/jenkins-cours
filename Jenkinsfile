@@ -6,7 +6,9 @@ pipeline {
     DOCKER_TAG = "v.${BUILD_ID}.0"
   }
 agent any
-when { branch 'master' }
+when {
+  branch 'master'
+}
 stages {
   stage('Docker Build'){
     steps {
