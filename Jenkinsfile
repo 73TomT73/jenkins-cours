@@ -53,8 +53,8 @@ stages {
         rm -Rf .kube
         mkdir .kube
         cat $KUBECONFIG > .kube/config
-        helm upgrade --install cast-service-dev helm/cast-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
-        helm upgrade --install movie-service-dev helm/movie-service/ -n dev --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install cast-service-dev helm/cast-service/ -n dev --set image.tag=$DOCKER_TAG
+        helm upgrade --install movie-service-dev helm/movie-service/ -n dev --set image.tag=$DOCKER_TAG
         '''
       }
     }
@@ -68,7 +68,7 @@ stages {
         sh '''
         rm -Rf .kube
         mkdir .kube
-
+        cat $KUBECONFIG > .kube/config
         helm upgrade --install cast-service-qa helm/cast-service/ -n qa --create-namespace --set image.tag=$DOCKER_TAG
         helm upgrade --install movie-service-qa helm/movie-service/ -n qa --create-namespace --set image.tag=$DOCKER_TAG
         '''
@@ -84,7 +84,7 @@ stages {
         sh '''
         rm -Rf .kube
         mkdir .kube
-
+        cat $KUBECONFIG > .kube/config
         helm upgrade --install cast-service-staging helm/cast-service/ -n staging --create-namespace --set image.tag=$DOCKER_TAG
         helm upgrade --install movie-service-staging helm/movie-service/ -n staging --create-namespace --set image.tag=$DOCKER_TAG
         '''
@@ -103,7 +103,7 @@ stages {
         sh '''
         rm -Rf .kube
         mkdir .kube
-
+        cat $KUBECONFIG > .kube/config
         helm upgrade --install cast-service-prod helm/cast-service/ -n prod --create-namespace --set image.tag=$DOCKER_TAG
         helm upgrade --install movie-service-prod helm/movie-service/ -n prod --create-namespace --set image.tag=$DOCKER_TAG
         '''
