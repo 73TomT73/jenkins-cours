@@ -1,0 +1,10 @@
+image:
+  tag: "prod"
+
+env:
+  databaseUri: "postgresql://cast_db_username:cast_db_password@cast-db/cast_db_dev"
+
+postgres:
+  database: cast_db_dev
+
+replicaCount: 1

@@ -52,5 +52,53 @@ stages {
       }
     }
   }
+  stage('Deploiement en qa'){
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      script {
+        sh '''
+        rm -Rf .kube
+        mkdir .kube
+
+        helm upgrade --install cast-service-qa helm/cast-service/ -n qa --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install movie-service-qa helm/movie-service/ -n qa --create-namespace --set image.tag=$DOCKER_TAG
+        '''
+      }
+    }
+  }
+  stage('Deploiement en staging'){
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      script {
+        sh '''
+        rm -Rf .kube
+        mkdir .kube
+
+        helm upgrade --install cast-service-staging helm/cast-service/ -n staging --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install movie-service-staging helm/movie-service/ -n staging --create-namespace --set image.tag=$DOCKER_TAG
+        '''
+      }
+    }
+  }
+  stage('Deploiement en prod'){
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      script {
+        sh '''
+        rm -Rf .kube
+        mkdir .kube
+
+        helm upgrade --install cast-service-prod helm/cast-service/ -n prod --create-namespace --set image.tag=$DOCKER_TAG
+        helm upgrade --install movie-service-prod helm/movie-service/ -n prod --create-namespace --set image.tag=$DOCKER_TAG
+        '''
+      }
+    }
+  }
 }
 }
